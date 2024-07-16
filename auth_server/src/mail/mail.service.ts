@@ -20,4 +20,12 @@ export class MailService {
       },
     });
   }
+
+  async sendForgotPasswordMail(email: string, token: string) {
+    await this.mailerService.sendMail({
+      to: email,
+      subject: 'Reset your password',
+      text: `Reset your password : http://localhost:5555/auth/reset-password/${token}`,
+    });
+  }
 }
