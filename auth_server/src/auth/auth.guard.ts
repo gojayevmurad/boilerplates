@@ -28,18 +28,18 @@ export class AuthGuard implements CanActivate {
         secret: 'hello-world',
       });
 
-      // 💡 We're checking if the user has an active session
-      const session = await this.prismaService.session.findUnique({
-        where: {
-          userId: payload.id,
-        },
-      });
+      // // 💡 We're checking if the user has an active session
+      // const session = await this.prismaService.session.findUnique({
+      //   where: {
+      //     userId: payload.id,
+      //   },
+      // });
 
-      if (!session) {
-        throw new UnauthorizedException({
-          message: 'Session not found',
-        });
-      }
+      // if (!session) {
+      //   throw new UnauthorizedException({
+      //     message: 'Session not found',
+      //   });
+      // }
 
       // 💡 We're assigning the payload to the request object here
       // so that we can access it in our route handlers

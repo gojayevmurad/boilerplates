@@ -4,13 +4,7 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function reset() {
-  await prisma.$transaction([
-    prisma.confirmationToken.deleteMany(),
-    prisma.session.deleteMany(),
-    prisma.step.deleteMany(),
-    prisma.target.deleteMany(),
-    prisma.user.deleteMany(),
-  ]);
+  awaitprisma.user.deleteMany();
 }
 
 reset()

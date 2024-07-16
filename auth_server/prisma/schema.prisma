@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -20,59 +14,47 @@ enum Role {
 }
 
 model User {
-  id         String             @id @default(cuid())
-  email      String             @unique
-  name       String?
-  surname    String?
-  password   String
-  isVerified Boolean            @default(false)
-  isBlocked  Boolean            @default(false)
-  birthDate  DateTime?
-  createdAt  DateTime           @default(now())
-  updatedAt  DateTime           @updatedAt
-  role       Role               @default(USER)
-  targets    Target[]
-  session    Session?
-  token      ConfirmationToken?
+  id            String         @id @default(cuid())
+  email         String         @unique
+  name          String?
+  surname       String?
+  password      String
+  isVerified    Boolean        @default(false)
+  isBlocked     Boolean        @default(false)
+  birthDate     DateTime?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  role          Role           @default(USER)
+  tokens        Token[]
+  loginAttempts LoginAttempt[]
 }
 
-// this model is used to store the targets that the user has to reach
-model Target {
-  id        String   @id @default(cuid())
-  title     String
-  progress  Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model Token {
+  id        Int       @id @default(autoincrement())
+  token     String    @unique
+  type      TokenType
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
-  steps     Step[]
-  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@unique([userId, type])
 }
 
-model Step {
-  id          String   @id @default(cuid())
-  title       String
-  description String?
-  isCompleted Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  targetId    String
-  target      Target   @relation(fields: [targetId], references: [id])
-}
-
-model Session {
-  id        String   @id @default(cuid())
-  token     String   @unique
-  user      User     @relation(fields: [userId], references: [id])
+model LoginAttempt {
+  id        Int      @id @default(autoincrement())
+  ip        String
+  browser   String
+  success   Boolean
+  password  String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  userId    String   @unique
 }
 
-model ConfirmationToken {
-  id        String   @id @default(cuid())
-  token     String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  userId    String   @unique
-  user      User     @relation(fields: [userId], references: [id])
+enum TokenType {
+  ACCESS
+  REFRESH
+  EMAIL_VERIFICATION
+  FORGOT_PASSWORD
 }

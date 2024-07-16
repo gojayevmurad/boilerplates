@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { UserModule } from 'src/user/user.module';
 import { JwtModule } from '@nestjs/jwt';
 import { MailModule } from 'src/mail/mail.module';
 
@@ -9,11 +8,10 @@ import { MailModule } from 'src/mail/mail.module';
   controllers: [AuthController],
   providers: [AuthService],
   imports: [
-    UserModule,
     JwtModule.register({
       global: true,
-      secret: 'hello-world',
-      signOptions: { expiresIn: '1h' },
+      secret: process.env.JWT_SECRET,
+      signOptions: { expiresIn: process.env.ACCESS_TOKEN_EXPIRATION_TIME },
     }),
     MailModule,
   ],
