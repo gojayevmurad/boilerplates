@@ -23,7 +23,7 @@ import { ConfigModule } from '@nestjs/config';
       defaults: {
         // change default values for all emails
         // can be overwrited by options param in sendMail method
-        from: '"No Reply" <noreply@muradgojayev.com>',
+        from: '"No Reply" <noreply@example  .com>',
       },
       template: {
         dir: join(__dirname, 'templates'),

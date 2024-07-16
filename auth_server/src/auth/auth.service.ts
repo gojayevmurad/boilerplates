@@ -29,9 +29,7 @@ export class AuthService {
     }
 
     const user = await this.prismaService.user.create({
-      data: {
-        ...createUserDto,
-      },
+      data: createUserDto,
     });
 
     const emailVerificationToken = await this.jwtService.signAsync(

@@ -10,7 +10,7 @@ export class MailService {
     await this.mailerService.sendMail({
       // to: createUserDto.email,
       to: email,
-      // from: '"Support Team" <support@example.com>', // override default from
+      // from: '"Support Team" <support@  .com>', // override default from
       subject: 'Welcome to Nice App! Confirm your Email',
       template: './confirmation', // `.hbs` extension is appended automatically
       context: {
