@@ -24,21 +24,23 @@ import { checkEnv } from 'src/utils/check-env';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  // @Post('register')
-  // register(@Body() createUserDto: CreateUserDto) {
-  //   return this.authService.signup(createUserDto);
-  // }
+  @Post('register')
+  register(@Body() createUserDto: CreateUserDto) {
+    return this.authService.register(createUserDto);
+  }
 
-  // @Post('login')
-  // @HttpCode(HttpStatus.OK)
-  // login(@Body() loginUserDto: LoginUserDto) {
-  // }
+  @Post('login')
+  @HttpCode(HttpStatus.OK)
+  login(@Body() loginUserDto: LoginUserDto) {
+    return this.authService.login(loginUserDto);
+  }
 
-  // @UseGuards(AuthGuard)
-  // @Post('signout')
-  // signout(@Req() req: Request) {
-  //   const token = extractTokenFromHeader(req);
-  // }
+  @UseGuards(AuthGuard)
+  @Post('logout')
+  signout(@Req() req: Request) {
+    const token = extractTokenFromHeader(req);
+    return this.authService.logout(token);
+  }
 
   // @UseGuards(AuthGuard)
   // @Put('change-password')
