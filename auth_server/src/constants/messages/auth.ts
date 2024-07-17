@@ -1,9 +1,16 @@
 export const AUTH_MESSAGES = {
   VERIFICATION_EMAIL_SENT: 'Verification email has been sent',
+  FORGOT_PASSWORD_EMAIL_SENT: 'Forgot password email has been sent',
   USER_ALREADY_EXISTS: 'User already exists',
   USER_NOT_FOUND: 'User not found',
   INVALID_CREDS: 'Invalid credentials',
   EMAIL_NOT_VERIFIED: 'Email is not verified',
+  EMAIL_ALREADY_VERIFIED: 'Email is already verified',
   USER_BLOCKED: 'User is blocked',
+  INVALID_TOKEN: 'Invalid token',
+  PASSWORD_RESET_SUCCESS: 'Password reset successfully',
+  PASSWORD_CHANGED_SUCCESS: 'Password changed successfully',
+  VERIFY_EMAIL_SUCCESS: 'Email verified successfully',
   USER_LOGGED_OUT: 'User logged out',
+  USER_LOGGED_IN: 'User logged in',
 };
