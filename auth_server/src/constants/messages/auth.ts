@@ -5,4 +5,5 @@ export const AUTH_MESSAGES = {
   INVALID_CREDS: 'Invalid credentials',
   EMAIL_NOT_VERIFIED: 'Email is not verified',
   USER_BLOCKED: 'User is blocked',
+  USER_LOGGED_OUT: 'User logged out',
 };

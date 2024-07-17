@@ -142,14 +142,40 @@ export class AuthService {
 
     return {
       code: 200,
-      message: 'User logged out',
+      message: AUTH_MESSAGES.USER_LOGGED_OUT,
     };
   }
 
-  forgotPassword() {}
-  resetPassword() {}
-  verifyEmail() {}
-  resendVerificationEmail() {}
-  changePassword() {}
-  changeEmail() {}
+  forgotPassword() {
+    // check if user exists
+    // generate token
+    // send reset password email
+  }
+
+  resetPassword() {
+    // check if token is valid
+    // update password
+  }
+
+  verifyEmail() {
+    // check if token is valid
+    // update email verification status
+  }
+
+  resendVerificationEmail() {
+    // check if user exists
+    // generate token
+    // send verification email
+  }
+
+  changePassword() {
+    // check if user exists
+    // check if old password is correct
+    // update password
+  }
+
+  changeEmail() {
+    // check if user exists
+    // update email
+  }
 }
